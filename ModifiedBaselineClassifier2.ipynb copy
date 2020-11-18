@@ -2,7 +2,7 @@
  "cells": [
   {
    "cell_type": "code",
-   "execution_count": 23,
+   "execution_count": 1,
    "metadata": {},
    "outputs": [
     {
@@ -27,7 +27,7 @@
        "True"
       ]
      },
-     "execution_count": 23,
+     "execution_count": 1,
      "metadata": {},
      "output_type": "execute_result"
     }
@@ -46,7 +46,7 @@
   },
   {
    "cell_type": "code",
-   "execution_count": 24,
+   "execution_count": 2,
    "metadata": {},
    "outputs": [],
    "source": [
@@ -73,7 +73,7 @@
   },
   {
    "cell_type": "code",
-   "execution_count": 25,
+   "execution_count": 3,
    "metadata": {},
    "outputs": [
     {
@@ -96,7 +96,7 @@
   },
   {
    "cell_type": "code",
-   "execution_count": 26,
+   "execution_count": 4,
    "metadata": {},
    "outputs": [],
    "source": [
@@ -115,26 +115,26 @@
   },
   {
    "cell_type": "code",
-   "execution_count": 27,
+   "execution_count": 5,
    "metadata": {},
    "outputs": [],
    "source": [
     "# Choose number of samples to use\n",
-    "#reviews = reviews.iloc[:1000] #commented out to use all samples"
+    "reviews = reviews.iloc[:1000] #removed two zeros"
    ]
   },
   {
    "cell_type": "code",
-   "execution_count": 28,
+   "execution_count": 6,
    "metadata": {},
    "outputs": [
     {
      "data": {
       "text/plain": [
-       "(480000, 2)"
+       "(1000, 2)"
       ]
      },
-     "execution_count": 28,
+     "execution_count": 6,
      "metadata": {},
      "output_type": "execute_result"
     }
@@ -147,7 +147,7 @@
   },
   {
    "cell_type": "code",
-   "execution_count": 29,
+   "execution_count": 7,
    "metadata": {},
    "outputs": [],
    "source": [
@@ -157,7 +157,7 @@
   },
   {
    "cell_type": "code",
-   "execution_count": 30,
+   "execution_count": 8,
    "metadata": {},
    "outputs": [],
    "source": [
@@ -171,7 +171,7 @@
    "metadata": {},
    "outputs": [],
    "source": [
-    "################# Lemmatizing ##############  ##DONT RUN W/ ALL SAMPLES\n",
+    "################# Lemmatizing ##############\n",
     "\n",
     "# Creating tags so that lemmatizer can understand verbs from nouns from adjectives \n",
     "tag_map = defaultdict(lambda : wn.NOUN)\n",
@@ -218,7 +218,7 @@
    "metadata": {},
    "outputs": [],
    "source": [
-    "############### Stemming Words ###############  ##DONT RUN W/ ALL SAMPLES\n",
+    "############### Stemming Words ###############\n",
     "\n",
     "for index, entry in enumerate(reviews['review']):\n",
     "    index = index + 1\n",
@@ -641,6 +641,74 @@
     "# svm.fit(train_x_Tfidf, train_y)\n",
     "# pred_svm = svm.predict(test_x_Tfidf)\n",
     "# print(\"Accuracy: \", accuracy_score(pred_svm, test_y))"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 19,
+   "metadata": {},
+   "outputs": [
+    {
+     "ename": "AttributeError",
+     "evalue": "module 'sklearn.svm' has no attribute 'predict_proba'",
+     "output_type": "error",
+     "traceback": [
+      "\u001b[0;31m---------------------------------------------------------------------------\u001b[0m",
+      "\u001b[0;31mAttributeError\u001b[0m                            Traceback (most recent call last)",
+      "\u001b[0;32m<ipython-input-19-26ef9eed6cc3>\u001b[0m in \u001b[0;36m<module>\u001b[0;34m\u001b[0m\n\u001b[1;32m      4\u001b[0m \u001b[0mnb_probs\u001b[0m \u001b[0;34m=\u001b[0m \u001b[0mnb\u001b[0m\u001b[0;34m.\u001b[0m\u001b[0mpredict_proba\u001b[0m\u001b[0;34m(\u001b[0m\u001b[0mtest_x_Tfidf\u001b[0m\u001b[0;34m)\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n\u001b[1;32m      5\u001b[0m \u001b[0mnb_probs\u001b[0m \u001b[0;34m=\u001b[0m \u001b[0mnb_probs\u001b[0m\u001b[0;34m[\u001b[0m\u001b[0;34m:\u001b[0m\u001b[0;34m,\u001b[0m\u001b[0;36m1\u001b[0m\u001b[0;34m]\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n\u001b[0;32m----> 6\u001b[0;31m \u001b[0msvm_probs\u001b[0m \u001b[0;34m=\u001b[0m \u001b[0msvm\u001b[0m\u001b[0;34m.\u001b[0m\u001b[0mpredict_proba\u001b[0m\u001b[0;34m(\u001b[0m\u001b[0mtest_x_Tfidf\u001b[0m\u001b[0;34m)\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n\u001b[0m\u001b[1;32m      7\u001b[0m \u001b[0msvm_probs\u001b[0m \u001b[0;34m=\u001b[0m \u001b[0msvm_probs\u001b[0m\u001b[0;34m[\u001b[0m\u001b[0;34m:\u001b[0m\u001b[0;34m,\u001b[0m\u001b[0;36m1\u001b[0m\u001b[0;34m]\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n\u001b[1;32m      8\u001b[0m \u001b[0;34m\u001b[0m\u001b[0m\n",
+      "\u001b[0;31mAttributeError\u001b[0m: module 'sklearn.svm' has no attribute 'predict_proba'"
+     ]
+    }
+   ],
+   "source": [
+    "#Analysis\n",
+    "\n",
+    "#Predict Probability\n",
+    "nb_probs = nb.predict_proba(test_x_Tfidf)\n",
+    "nb_probs = nb_probs[:,1]\n",
+    "svm_probs = svm.predict_proba(test_x_Tfidf)\n",
+    "svm_probs = svm_probs[:,1]\n",
+    "\n",
+    "#Classification Report\n",
+    "print(classification_report(test_y, pred_nb, labels=[0,1]))\n",
+    "print(classification_report(test_y, pred_svm, labels=[0,1]))\n",
+    "\n",
+    "#Calculate precision-recall\n",
+    "precision_nb, recall_nb, thresholds_nb = precision_recall_curve(test_y, nb_probs)\n",
+    "precision_svm, recall_svm, thresholds_svm = precision_recall_curve(test_y, svm_probs)\n",
+    "\n",
+    "#Calculate F1\n",
+    "f1_nb = f1_score(test_y, pred_nb)\n",
+    "f1_svm = f1_score(test_y, pred_svm)\n",
+    "\n",
+    "#Calculate precision recal auc\n",
+    "# auc_nb = auc(recall_nb, precision_nb)\n",
+    "# auc_svm = auc(recall_svm, precision_svm)\n",
+    "\n",
+    "# summarize scores\n",
+    "print(\"Test Split: \", test_s)\n",
+    "print(\"Max Features: \", max_f)\n",
+    "print('Naive-Bayes: f1=%.3f' % (f1_nb))\n",
+    "print(\"Accuracy: \", accuracy_score(pred_nb, test_y))\n",
+    "print('Support Vector Machine: f1=%.3f' % (f1_svm))\n",
+    "print(\"Accuracy: \", accuracy_score(pred_svm, test_y))\n",
+    "\n",
+    "\n",
+    "# plot the precision-recall curves\n",
+    "no_skill = len(test_y[test_y==1]) / len(test_y)\n",
+    "pyplot.plot([0, 1], [no_skill, no_skill], linestyle='--', label='No Skill')\n",
+    "pyplot.plot(recall_nb, precision_nb, marker='.', label='Naive-Bayes')\n",
+    "pyplot.plot(recall_svm, precision_svm, marker='.', label='SVM')\n",
+    "\n",
+    "# axis labels\n",
+    "pyplot.xlabel('Recall')\n",
+    "pyplot.ylabel('Precision')\n",
+    "\n",
+    "# show the legend\n",
+    "pyplot.legend()\n",
+    "\n",
+    "# show the plot\n",
+    "pyplot.show()"
    ]
   },
   {
